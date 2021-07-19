@@ -38,9 +38,8 @@ public class CommandParser {
                 return Collections.singletonList(cmd);
             }
         }else {
-            System.out.println("Please enter a command");
+//            System.out.println("Please enter a command");
             return new ArrayList<>();
         }
-
     }
 }

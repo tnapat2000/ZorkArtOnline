@@ -7,7 +7,6 @@ public class Entity {
     protected int maxHP;
     protected int currentHP;
     protected int AC;
-    protected int DMG;
     protected boolean isAlive;
 
     public Entity(int maxHP, int AC){
@@ -24,7 +23,6 @@ public class Entity {
     public void setDead(){
         isAlive = false;
     }
-
 
     public int getMaxHP() {
         return maxHP;
@@ -48,14 +46,6 @@ public class Entity {
 
     public void setAC(int AC) {
         this.AC = AC;
-    }
-
-    public int getDMG() {
-        return DMG;
-    }
-
-    public void setDMG(int DMG) {
-        this.DMG = DMG;
     }
 
 }

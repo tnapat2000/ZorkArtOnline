@@ -2,13 +2,14 @@ package io.muic.ssc.zork.Command;
 
 import io.muic.ssc.zork.Game;
 
+import java.io.IOException;
 import java.util.List;
 
-public class ExitCommand implements Command{
+public class QuitCommand implements Command{
 
     @Override
     public int gameState() {
-        return 1;
+        return 0;
     }
 
     @Override
@@ -18,12 +19,11 @@ public class ExitCommand implements Command{
 
     @Override
     public String getCommand() {
-        return "exit";
+        return "quit";
     }
 
     @Override
-    public void execute(Game game, List<String> args) {
-        game.getGameOutput().println("game exit");
-        game.exit();
+    public void execute(Game game, List<String> args) throws IOException {
+        game.quit();
     }
 }

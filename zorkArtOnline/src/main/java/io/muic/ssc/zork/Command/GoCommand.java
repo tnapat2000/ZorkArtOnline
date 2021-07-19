@@ -1,11 +1,16 @@
 package io.muic.ssc.zork.Command;
 
 import io.muic.ssc.zork.Game;
-import io.muic.ssc.zork.GameMap.Room;
 
 import java.util.List;
 
 public class GoCommand implements Command{
+
+    @Override
+    public int gameState() {
+        return 0;
+    }
+
     @Override
     public int numArgs() {
         return 1;
@@ -18,6 +23,6 @@ public class GoCommand implements Command{
 
     @Override
     public void execute(Game game, List<String> args) {
-        game.go(args.get(0));
+        game.go(args.get(0).toLowerCase());
     }
 }

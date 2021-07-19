@@ -1,13 +1,11 @@
 package io.muic.ssc.zork.Entity;
 
-import io.muic.ssc.zork.GameMap.Room;
-
 import java.util.Random;
 
 public class Monster extends Entity{
 
     private final String monsterName;
-    private String defeatMessage;
+    private String defeatMessage = "";
     private final int baseDMG;
     private final Random random;
 
@@ -15,24 +13,9 @@ public class Monster extends Entity{
         super(maxHP, AC);
         this.baseDMG = DMG;
         this.random = new Random();
-        this.monsterName = monsterName;
+        this.monsterName = monsterName.toLowerCase();
     }
 
-    public void attack(Player player){
-        int hitRoll = random.nextInt(20);
-        if (hitRoll >= (player.AC -1)){
-            player.currentHP -= baseDMG;
-        }
-        else if (hitRoll == 19){
-            player.currentHP -= Math.round(baseDMG * 1.5);
-        }
-        else {
-            System.out.println("Monster attack miss");
-        }
-        if (player.currentHP <= 0){
-//            restart the game
-        }
-    }
 
     public void printDefeatMessage(){
         if (!isAlive){System.out.println(defeatMessage);}
@@ -44,5 +27,9 @@ public class Monster extends Entity{
 
     public String getMonsterName() {
         return monsterName;
+    }
+
+    public int getBaseDMG() {
+        return baseDMG;
     }
 }

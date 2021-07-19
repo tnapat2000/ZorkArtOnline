@@ -1,6 +1,5 @@
 package io.muic.ssc.zork.Entity;
 
-import io.muic.ssc.zork.GameMap.Room;
 
 public class Item{
 
@@ -9,7 +8,7 @@ public class Item{
     protected String itemDescription;
 
     public Item(String itemName, String itemDescription){
-        this.itemName = itemName;
+        this.itemName = itemName.toLowerCase();
         this.itemDescription = itemDescription;
     }
 

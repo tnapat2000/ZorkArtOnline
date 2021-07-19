@@ -4,11 +4,11 @@ import io.muic.ssc.zork.Game;
 
 import java.util.List;
 
-public class ExitCommand implements Command{
+public class HelpCommand implements Command{
 
     @Override
     public int gameState() {
-        return 1;
+        return 2;
     }
 
     @Override
@@ -18,12 +18,11 @@ public class ExitCommand implements Command{
 
     @Override
     public String getCommand() {
-        return "exit";
+        return "help";
     }
 
     @Override
     public void execute(Game game, List<String> args) {
-        game.getGameOutput().println("game exit");
-        game.exit();
+        game.help();
     }
 }

@@ -1,20 +1,17 @@
 package io.muic.ssc.zork.Entity;
 
-import io.muic.ssc.zork.GameMap.Room;
 
 import java.util.*;
 
 public class Player extends Entity{
 
     private final Map<String, Item> playerInventory;
-    private final Random random;
     private int dmgMultiplier;
 
-    public Player(int playerMaxHP, int playerAC, int dmgMultiplier ,Room startingRoom){
-        super(playerMaxHP, playerAC ,startingRoom);
+    public Player(int playerMaxHP, int playerAC, int dmgMultiplier){
+        super(playerMaxHP, playerAC);
         this.dmgMultiplier = dmgMultiplier;
         this.playerInventory = new HashMap<>();
-        this.random = new Random();
     }
 
     public Map<String, Item> getPlayerInventory() {
@@ -29,39 +26,18 @@ public class Player extends Entity{
         return ret;
     }
 
-    public void attackWithWeapon(Monster target, Weapon weapon){
-        int hitRoll = random.nextInt(20) + weapon.getProficiency();
-        if (hitRoll >= (target.AC -1)){
-            target.currentHP -= (weapon.getWeaponDMG() + dmgMultiplier);
-        }
-        else if (hitRoll == 19){
-            target.currentHP -= Math.round((weapon.getWeaponDMG() + dmgMultiplier) * 1.5);
-        }
-        else{
-            System.out.println("attack miss");
-        }
-
-        if (target.currentHP <= 0){
-            target.setDead();
-            target.printDefeatMessage();
-            dmgMultiplier += 1;
-        }
-    }
 
     public void usePotion(Potion potion){
 //        implement later
     }
 
-    public void increaseDMG(int monsterHP){
-        this.DMG += (monsterHP / 2);
+    public void increaseDMGMultiplier(int monsterHP){
+        this.dmgMultiplier += Math.round(monsterHP * 0.1);
     }
 
     public void increaseHP(){
         if (currentHP < maxHP){
-            this.currentHP += (currentHP/2);
-        }
-        else {
-            System.out.println("current HP is at MAX");
+            this.currentHP += Math.round(currentHP * 0.5);
         }
     }
 

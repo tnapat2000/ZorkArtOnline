@@ -9,27 +9,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Room {
+public abstract class Room {
 
-    String roomDescription;
+    private String roomDescription;
 
-    String roomName;
+    private String roomName;
 
     private Map<String, Room> roomMap = new HashMap<>();
 
     private Map<String, Item> itemMap = new HashMap<>();
 
-    private Player player;
-
     private Map<String, Monster> monsterMap = new HashMap<>();
 
-    public Room(String roomName, String roomDescription){
+    public void setRoomDescription(String roomDescription) {
         this.roomDescription = roomDescription;
-        this.roomName = roomName;
     }
 
-    public void setRoomDescription(String roomName,String roomDescription){
-        this.roomDescription = roomDescription;
+    public void setRoomName(String roomName) {
         this.roomName = roomName;
     }
 
@@ -70,8 +66,10 @@ public class Room {
     }
 
     public void setItems(List<Item> items) {
-        for (Item item: items){
-            this.itemMap.put(item.getItemName(), item);
+        if (items != null){
+            for (Item item: items){
+                this.itemMap.put(item.getItemName(), item);
+            }
         }
     }
 
@@ -80,9 +78,15 @@ public class Room {
     }
 
     public void setMonsters(List<Monster> monsters) {
-        for (Monster monster : monsters){
-            this.monsterMap.put(monster.getMonsterName(), monster);
+        if (monsters != null){
+            for (Monster monster : monsters){
+                this.monsterMap.put(monster.getMonsterName(), monster);
+            }
         }
+    }
+
+    public Monster retrieveMonster(String monsterName){
+        return monsterMap.get(monsterName);
     }
 
     public Map<String, Item> getItemMap() {
@@ -97,10 +101,6 @@ public class Room {
         return new ArrayList<>(monsterMap.keySet());
     }
 
-    public int getMonstersNumber(){
-        return monsterMap.size();
-    }
-
     public String getRoomName() {
         return roomName;
     }
@@ -112,4 +112,21 @@ public class Room {
     public Map<String, Room> getRoomMap() {
         return roomMap;
     }
+
+    public abstract String insertRoomName();
+
+    public abstract String insertRoomDescription();
+
+    public abstract List<Item> insertItems();
+
+    public abstract List<Monster> insertMonsters();
+
+    public abstract String insertNorthRoom();
+
+    public abstract String insertEastRoom();
+
+    public abstract String insertWestRoom();
+
+    public abstract String insertSouthRoom();
+
 }

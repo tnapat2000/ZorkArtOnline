@@ -8,6 +8,11 @@ import java.util.List;
 public class DropCommand implements Command{
 
     @Override
+    public int gameState() {
+        return 0;
+    }
+
+    @Override
     public int numArgs() {
         return 1;
     }
@@ -19,7 +24,7 @@ public class DropCommand implements Command{
 
     @Override
     public void execute(Game game, List<String> args) {
-        Item item = game.getCurrentPlayer().getPlayerInventory().get(args.get(0));
+        Item item = game.getCurrentPlayer().getPlayerInventory().get(args.get(0).toLowerCase());
         game.drop(item, game.getPlayerLocation());
     }
 }

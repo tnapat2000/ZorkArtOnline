@@ -8,6 +8,11 @@ import java.util.List;
 public class TakeCommand implements Command{
 
     @Override
+    public int gameState() {
+        return 0;
+    }
+
+    @Override
     public int numArgs() {
         return 1;
     }
@@ -19,7 +24,7 @@ public class TakeCommand implements Command{
 
     @Override
     public void execute(Game game, List<String> args) {
-        Item item = game.getPlayerLocation().retrieveItem(args.get(0));
-        game.take(item, game.getPlayerLocation());
+        Item item = game.getPlayerLocation().retrieveItem(args.get(0).toLowerCase());
+        game.take(item);
     }
 }

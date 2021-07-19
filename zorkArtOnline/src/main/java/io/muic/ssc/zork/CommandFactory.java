@@ -9,7 +9,8 @@ public class CommandFactory {
 
     private static final List<Class<? extends Command>> REGISTERED_COMMANDS = Arrays.asList(
             ExitCommand.class, InfoCommand.class, TakeCommand.class, DropCommand.class,
-            GoCommand.class
+            GoCommand.class, HelpCommand.class, QuitCommand.class, PlayCommand.class,
+            TargetCommand.class, AttackWithCommand.class, SaveCommand.class, LoadCommand.class
     );
 
     private static final Map<String , Command> COMMANDS_MAP = new HashMap<>();
